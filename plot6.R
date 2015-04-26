@@ -37,7 +37,11 @@ print(ggplot(data=d, aes(x=factor(year), y=x, fill=fips))
     + geom_bar(stat="identity", position=position_dodge())
 	+ labs(x = "Year")
 	+ labs(y = "Tons")
-	+ labs(title = "Total PM2.5 emission of motor vehicle sources: Los Angeles vs. Baltimore"))
+	+ labs(title = "Total PM2.5 emission of motor vehicle sources: Los Angeles vs. Baltimore")
+	+ geom_hline(aes(yintercept=d[d$fips == "Los Angeles" & d$year == 1999,c("x")]), colour="#F8766D", linetype="dashed")
+	+ geom_hline(aes(yintercept=d[d$fips == "Los Angeles" & d$year == 2008,c("x")]), colour="#F8766D", linetype="dashed")
+	+ geom_hline(aes(yintercept=d[d$fips == "Baltimore" & d$year == 1999,c("x")]), colour="#00BFC4", linetype="dashed")
+	+ geom_hline(aes(yintercept=d[d$fips == "Baltimore" & d$year == 2008,c("x")]), colour="#00BFC4", linetype="dashed"))
 
 # Close PNG device
 dev.off()
